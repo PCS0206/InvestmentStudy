@@ -9,7 +9,7 @@ html, body {
   background: #f7f7f7;
   color: #333;
   display: flex;
-  flex-direction: column; /* 푸터를 하단으로 보내기 위한 flex */
+  flex-direction: column; /* 푸터를 하단으로 밀기 위한 flex */
 }
 
 a {
@@ -17,7 +17,6 @@ a {
   color: #2a7ae2;
 }
 
-/* 컨테이너 */
 .container {
   width: 90%;
   max-width: 1000px;
@@ -51,7 +50,9 @@ a {
   margin-top: 30px;
 }
 
-/* 게시글 카드 */
+/* ========================================================
+   게시글 카드 (index.html)
+======================================================== */
 .posts {
   flex: 2;
 }
@@ -85,7 +86,9 @@ a {
   font-size: 1rem;
 }
 
-/* 포스트 페이지 */
+/* ========================================================
+   포스트 페이지
+======================================================== */
 .post-article {
   background: white;
   padding: 20px;
@@ -115,6 +118,32 @@ a {
 }
 
 /* ========================================================
+   페이지네이션
+======================================================== */
+#pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+#pagination button {
+  padding: 6px 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  background: #2a7ae2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#pagination button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+#pagination button:hover:not(:disabled) {
+  background: #1c5bbf;
+}
+
+/* ========================================================
    푸터
 ======================================================== */
 .footer {
@@ -131,27 +160,6 @@ a {
   .main-content {
     flex-direction: column;
   }
-}
-
-#pagination button {
-  padding: 6px 12px;
-  margin: 0 5px;
-  border: none;
-  border-radius: 5px;
-  background: #2a7ae2;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-#pagination button:disabled {
-  background: #aaa;
-  cursor: not-allowed;
-}
-
-#pagination button:hover:not(:disabled) {
-  background: #1c5bbf;
 }
 
 
