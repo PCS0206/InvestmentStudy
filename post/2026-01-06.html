@@ -1,31 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2026-01-06 | 오늘의 투자 공부</title>
-  <link rel="stylesheet" href="../style.css">
+<meta charset="UTF-8">
+<title>오늘의 투자 공부</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <h1>채성의 투자 블로그</h1>
-      <nav>
-        <a href="../index.html">홈</a>
-      </nav>
-    </div>
-  </header>
+  <div class="container">
+    <div id="post-content"></div>
+  </div>
 
-  <main class="container main-content">
-    <article class="post-article">
-      <h2>2026-01-06 | 오늘의 투자 공부</h2>
-      <p>오늘은 AAPL 분석과 옵션 전략을 공부했습니다.</p>
-      <img src="../assets/images/chart.png" alt="차트" style="max-width:100%; border-radius:10px;">
-    </article>
-  </main>
-
-  <footer class="footer">
-    <p>© 2026 채성. All rights reserved.</p>
-  </footer>
+  <script>
+    fetch('2026-01-10-test.md')
+      .then(res=>res.text())
+      .then(md=>{document.getElementById('post-content').innerHTML=marked(md);});
+  </script>
 </body>
 </html>
