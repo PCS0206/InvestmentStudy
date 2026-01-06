@@ -10,13 +10,12 @@
     <div id="post-content">Loading...</div>
   </div>
 
-  <!-- 1️⃣ marked.js는 반드시 fetch 코드 위에 넣기 -->
+  <!-- 반드시 fetch 코드 위에 넣기 -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- 2️⃣ Markdown 파일 fetch + 변환 -->
   <script>
     const params = new URLSearchParams(window.location.search);
-    const mdFile = params.get('file'); // URL 쿼리에서 file 파라미터 가져오기
+    const mdFile = params.get('file');
 
     if(mdFile){
       fetch(`${mdFile}`)
@@ -25,12 +24,7 @@
           return res.text();
         })
         .then(md => {
-          // marked.js가 로드된 상태에서 변환
-          if (typeof marked !== "function") {
-            document.getElementById('post-content').innerHTML = "<p>Markdown 변환 라이브러리가 로드되지 않았습니다.</p>";
-            return;
-          }
-          document.getElementById('post-content').innerHTML = marked(md);
+          document.getElementById('post-content').innerHTML = marked.parse(md);
         })
         .catch(err => {
           console.error(err);
@@ -42,4 +36,5 @@
   </script>
 </body>
 </html>
+
 
