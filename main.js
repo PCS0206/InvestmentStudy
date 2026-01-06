@@ -10,7 +10,7 @@ let currentPage = 1;
 let currentTag = '모두';
 
 // 1. 게시물 로딩
-fetch('post/1posts.json')
+fetch('post/*posts.json')
   .then(res => {
     if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     return res.json();
