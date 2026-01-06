@@ -1,7 +1,7 @@
 const postList = document.getElementById('post-list');
 
 // posts.json 불러오기
-fetch('post/posts.json')
+fetch('post/1posts.json')
   .then(response => response.json())
   .then(posts => {
     // 최신순 정렬
