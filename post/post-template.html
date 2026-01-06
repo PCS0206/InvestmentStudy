@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>투자 블로그</title>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8">
+  <title>투자 블로그</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <div class="container">
@@ -14,16 +14,20 @@
   <script>
     // URL 쿼리에서 Markdown 파일 이름 가져오기
     const params = new URLSearchParams(window.location.search);
-    const mdFile = params.get('file');
+    const mdFile = params.get('file'); // ?file=Markdown파일명
+
+    console.log("불러올 Markdown 파일:", mdFile); // 디버그용
 
     if(mdFile){
-      // Markdown 파일이 같은 post 폴더 안에 있다는 가정
-      fetch(`./${mdFile}`)
+      // post-template.html과 같은 폴더 안에 Markdown 파일이 있어야 fetch 가능
+      fetch(`${mdFile}`)
         .then(res => {
+          console.log("fetch 상태:", res.status); // 디버그용
           if (!res.ok) throw new Error("파일을 찾을 수 없습니다.");
           return res.text();
         })
-        .then(md => { 
+        .then(md => {
+          // Markdown → HTML 변환 후 삽입
           document.getElementById('post-content').innerHTML = marked(md);
         })
         .catch(err => {
