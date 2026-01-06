@@ -15,15 +15,18 @@ let currentTag = '모두';
 
 // 1posts.json에서 글 목록 읽기
 fetch('post/1posts.json')
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`); //
+    return res.json();
+  })
   .then(data => {
-    allPosts = data.sort((a,b) => new Date(b.date) - new Date(a.date)); // 최신순
-    initTags();
-    filterPosts();
+    allPosts = data.sort((a,b) => new Date(b.date) - new Date(a.date)); //
+    initTags(); //
+    filterPosts(); //
   })
   .catch(err => {
-    console.error("글 목록 로딩 실패:", err);
-    postList.innerHTML = "<p>글 목록을 불러올 수 없습니다.</p>";
+    console.error("상세 에러:", err); // 콘솔에서 404인지 문법에러인지 확인 가능
+    postList.innerHTML = `<p>글 목록 로딩 실패: ${err.message}</p>`; //
   });
 
 // 태그 사이드바 초기화
