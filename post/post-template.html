@@ -5,6 +5,35 @@
   <title>투자 블로그</title>
   <link rel="stylesheet" href="../style.css">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    /* 뒤로가기 버튼 스타일 */
+    .back-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      color: white;
+      font-weight: bold;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+      background: linear-gradient(135deg, #00f2fe, #4facfe);
+    }
+
+    /* Markdown 내부 기본 스타일 (기존 글 카드 스타일 유지) */
+    #post-content h1, #post-content h2, #post-content h3,
+    #post-content p, #post-content ul, #post-content ol, #post-content blockquote {
+      margin: 10px 0;
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -86,6 +115,5 @@
   </script>
 </body>
 </html>
-
 
 
