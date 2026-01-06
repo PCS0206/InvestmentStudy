@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>투자 블로그</title>
-  <!-- marked.js CDN, defer 추가 -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -12,21 +10,22 @@
     <div id="post-content">Loading...</div>
   </div>
 
-  <script>
-    // URL 쿼리에서 Markdown 파일 이름 가져오기
-    const params = new URLSearchParams(window.location.search);
-    const mdFile = params.get('file'); // ?file=Markdown파일명
+  <!-- 1️⃣ marked.js는 반드시 fetch 코드 위에 넣기 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-    console.log("불러올 Markdown 파일:", mdFile); // 디버그용
+  <!-- 2️⃣ Markdown 파일 fetch + 변환 -->
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const mdFile = params.get('file'); // URL 쿼리에서 file 파라미터 가져오기
 
     if(mdFile){
-      fetch(`${mdFile}`) // post-template.html과 같은 폴더 안에 Markdown 파일이 있어야 함
+      fetch(`${mdFile}`)
         .then(res => {
-          console.log("fetch 상태:", res.status); // 디버그용
           if (!res.ok) throw new Error("파일을 찾을 수 없습니다.");
           return res.text();
         })
         .then(md => {
+          // marked.js가 로드된 상태에서 변환
           if (typeof marked !== "function") {
             document.getElementById('post-content').innerHTML = "<p>Markdown 변환 라이브러리가 로드되지 않았습니다.</p>";
             return;
