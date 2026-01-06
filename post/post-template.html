@@ -1,52 +1,67 @@
-<div class="sidebar">
-  <div class="categories">
-    <h3>태그</h3>
-    <ul id="tag-list"></ul>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>투자 블로그</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- marked.js 로드 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>투자 블로그</h1>
+    </div>
+  </header>
+
+  <div class="container main-content">
+    <div class="posts">
+      <!-- Markdown 글 삽입 영역 -->
+      <div id="post-content">Loading...</div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="categories">
+        <h3>태그</h3>
+        <ul></ul>
+      </div>
+    </aside>
   </div>
-</div>
 
-<script>
-const params = new URLSearchParams(window.location.search);
-const mdFile = params.get('file');
+  <footer class="footer">
+    © 2026 채성. All rights reserved.
+  </footer>
 
-if(mdFile){
-  // Markdown 불러오기
-  fetch(mdFile)
-    .then(res => res.text())
-    .then(md => {
-      const postContent = document.getElementById('post-content');
-      postContent.innerHTML = marked.parse(md);
-      postContent.classList.add('post-card');
-    })
-    .catch(err => {
-      console.error(err);
-      document.getElementById('post-content').innerHTML = "<p>글을 불러올 수 없습니다.</p>";
-    });
+  <script>
+    // URL 쿼리에서 Markdown 파일 이름 가져오기
+    const params = new URLSearchParams(window.location.search);
+    const mdFile = params.get('file');
 
-  // JSON에서 태그 가져오기
-  fetch('1posts.json')
-    .then(res => res.json())
-    .then(posts => {
-      const post = posts.find(p => p.filename === mdFile);
-      if(post && post.tags){
-        const tagList = document.getElementById('tag-list');
-        tagList.innerHTML = '';
-        post.tags.forEach(tag => {
-          const li = document.createElement('li');
-          const btn = document.createElement('button');
-          btn.textContent = tag;
-          btn.onclick = () => {
-            // 클릭하면 index.html에서 해당 태그 글만 보이도록 이동
-            window.location.href = `../index.html?tag=${encodeURIComponent(tag)}`;
-          };
-          li.appendChild(btn);
-          tagList.appendChild(li);
+    if(mdFile){
+      fetch(mdFile)
+        .then(res => {
+          if (!res.ok) throw new Error("파일을 찾을 수 없습니다.");
+          return res.text();
+        })
+        .then(md => {
+          // Markdown 변환 후 기존 디자인 유지
+          const postContent = document.getElementById('post-content');
+          postContent.innerHTML = marked.parse(md);
+
+          // 모든 h1, h2, p 등 텍스트를 post-card 스타일로 감싸기
+          // optional: 카드 스타일 그대로 적용
+          postContent.classList.add('post-card');
+        })
+        .catch(err => {
+          console.error(err);
+          document.getElementById('post-content').innerHTML = "<p>글을 불러올 수 없습니다.</p>";
         });
-      }
-    });
-} else {
-  document.getElementById('post-content').innerHTML = "<p>글을 선택해주세요.</p>";
-}
-</script>
+    } else {
+      document.getElementById('post-content').innerHTML = "<p>글을 선택해주세요.</p>";
+    }
+  </script>
+</body>
+</html>
+
 
 
