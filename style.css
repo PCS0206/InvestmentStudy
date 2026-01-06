@@ -1,9 +1,15 @@
-body {
-  font-family: 'Noto Sans KR', sans-serif;
+/* ========================================================
+   기본 설정
+======================================================== */
+html, body {
+  height: 100%; /* 화면 전체 높이 확보 */
   margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  line-height: 1.6;
   background: #f7f7f7;
   color: #333;
-  line-height: 1.6;
+  display: flex;
+  flex-direction: column; /* 푸터를 하단으로 보내기 위한 flex */
 }
 
 a {
@@ -11,13 +17,16 @@ a {
   color: #2a7ae2;
 }
 
+/* 컨테이너 */
 .container {
   width: 90%;
   max-width: 1000px;
   margin: 0 auto;
 }
 
-/* 헤더 */
+/* ========================================================
+   헤더
+======================================================== */
 .header {
   background: #2a7ae2;
   color: white;
@@ -32,8 +41,11 @@ a {
   font-weight: bold;
 }
 
-/* 메인 */
+/* ========================================================
+   메인
+======================================================== */
 .main-content {
+  flex: 1; /* 글이 적어도 footer를 하단으로 밀어주는 핵심 */
   display: flex;
   gap: 30px;
   margin-top: 30px;
@@ -73,7 +85,23 @@ a {
   font-size: 1rem;
 }
 
-/* 사이드바 */
+/* 포스트 페이지 */
+.post-article {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+.post-article img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* ========================================================
+   사이드바
+======================================================== */
 .sidebar {
   flex: 1;
 }
@@ -86,20 +114,24 @@ a {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Footer */
+/* ========================================================
+   푸터
+======================================================== */
 .footer {
-  text-align: center;
-  padding: 20px 0;
-  margin-top: 50px;
   background: #222;
   color: white;
+  text-align: center;
+  padding: 20px 0;
 }
 
-/* 반응형 */
+/* ========================================================
+   반응형
+======================================================== */
 @media screen and (max-width: 768px) {
   .main-content {
     flex-direction: column;
   }
 }
+
 
 
