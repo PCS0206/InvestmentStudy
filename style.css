@@ -1,68 +1,65 @@
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background: #f9f9f9;
+html, body {
+  height: 100%;
   margin: 0;
-  padding: 0;
-  color: #333;
-}
-
-header {
-  background: #222;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  display: flex;
+  flex-direction: column;
+  background: #f7f7f7;
 }
 
 .container {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 10px;
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-footer {
-  background: #111;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
+.header {
+  background: #2a7ae2;
+  color: white;
+  padding: 20px 0;
 }
+.header h1 { margin: 0; }
 
+.main-content { flex: 1; display: flex; gap: 30px; margin-top: 30px; }
+
+.posts { flex: 2; }
 .post-card {
-  background: #fff;
+  background: white;
+  padding: 15px;
   border-radius: 10px;
-  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   margin-bottom: 15px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+.post-title { font-size: 1.2rem; font-weight: bold; display: block; margin-bottom: 5px; }
+.post-date { font-size: 0.9rem; color: #888; margin-bottom: 10px; }
 
-.post-card h2 {
-  margin-top: 0;
+.sidebar .categories ul li button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 5px 0;
+  background: none;
+  border: none;
+  color: #2a7ae2;
+  font-weight: bold;
+  cursor: pointer;
 }
+.sidebar .categories ul li button:hover { color: #1c5bbf; }
 
-.post-card .date {
-  font-size: 0.9em;
-  color: #666;
-}
-
-.post-card .tags {
-  margin: 10px 0;
-}
-
-.post-card .tag {
-  background: #eee;
-  padding: 3px 8px;
+#pagination { text-align: center; margin-top: 50px; margin-bottom: 50px; }
+#pagination button {
+  padding: 6px 12px;
+  margin: 0 5px;
+  border: none;
   border-radius: 5px;
-  font-size: 0.8em;
-  margin-right: 5px;
+  background: #2a7ae2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
+#pagination button:hover:not(:disabled) { background: #1c5bbf; }
+#pagination button:disabled { background: #aaa; cursor: not-allowed; }
 
-.post-card .read-more {
-  display: inline-block;
-  margin-top: 10px;
-  text-decoration: none;
-  color: #1a73e8;
-}
+.footer { background: #222; color: white; text-align: center; padding: 20px 0; }
 
-.post-card .read-more:hover {
-  text-decoration: underline;
-}
+@media screen and (max-width:768px){ .main-content{flex-direction:column;} }
